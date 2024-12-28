@@ -1,0 +1,64 @@
+
+build/x86/sum.o:     file format elf32-i386
+
+
+Disassembly of section .text.startup:
+
+00000000 <main>:
+   0:	8d 4c 24 04          	lea    0x4(%esp),%ecx
+   4:	83 e4 f0             	and    $0xfffffff0,%esp
+   7:	ff 71 fc             	push   -0x4(%ecx)
+   a:	55                   	push   %ebp
+   b:	89 e5                	mov    %esp,%ebp
+   d:	57                   	push   %edi
+   e:	56                   	push   %esi
+   f:	53                   	push   %ebx
+  10:	e8 fc ff ff ff       	call   11 <main+0x11>
+  15:	81 c3 02 00 00 00    	add    $0x2,%ebx
+  1b:	51                   	push   %ecx
+  1c:	83 ec 0c             	sub    $0xc,%esp
+  1f:	8b 39                	mov    (%ecx),%edi
+  21:	8b 71 04             	mov    0x4(%ecx),%esi
+  24:	57                   	push   %edi
+  25:	8d 83 00 00 00 00    	lea    0x0(%ebx),%eax
+  2b:	50                   	push   %eax
+  2c:	6a 02                	push   $0x2
+  2e:	e8 fc ff ff ff       	call   2f <main+0x2f>
+  33:	83 c4 10             	add    $0x10,%esp
+  36:	83 ff 01             	cmp    $0x1,%edi
+  39:	7e 32                	jle    6d <main+0x6d>
+  3b:	50                   	push   %eax
+  3c:	8d 83 00 00 00 00    	lea    0x0(%ebx),%eax
+  42:	ff 76 04             	push   0x4(%esi)
+  45:	50                   	push   %eax
+  46:	6a 02                	push   $0x2
+  48:	e8 fc ff ff ff       	call   49 <main+0x49>
+  4d:	83 c4 0c             	add    $0xc,%esp
+  50:	6a 0a                	push   $0xa
+  52:	6a 00                	push   $0x0
+  54:	ff 76 04             	push   0x4(%esi)
+  57:	e8 fc ff ff ff       	call   58 <main+0x58>
+  5c:	83 c4 10             	add    $0x10,%esp
+  5f:	8d 65 f0             	lea    -0x10(%ebp),%esp
+  62:	31 c0                	xor    %eax,%eax
+  64:	59                   	pop    %ecx
+  65:	5b                   	pop    %ebx
+  66:	5e                   	pop    %esi
+  67:	5f                   	pop    %edi
+  68:	5d                   	pop    %ebp
+  69:	8d 61 fc             	lea    -0x4(%ecx),%esp
+  6c:	c3                   	ret
+  6d:	8d 83 00 00 00 00    	lea    0x0(%ebx),%eax
+  73:	52                   	push   %edx
+  74:	68 80 96 98 00       	push   $0x989680
+  79:	50                   	push   %eax
+  7a:	6a 02                	push   $0x2
+  7c:	e8 fc ff ff ff       	call   7d <main+0x7d>
+  81:	83 c4 10             	add    $0x10,%esp
+  84:	eb d9                	jmp    5f <main+0x5f>
+
+Disassembly of section .text.__x86.get_pc_thunk.bx:
+
+00000000 <__x86.get_pc_thunk.bx>:
+   0:	8b 1c 24             	mov    (%esp),%ebx
+   3:	c3                   	ret
