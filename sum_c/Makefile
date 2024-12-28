@@ -24,7 +24,7 @@ ASMS_x86_64_att = build/x86_64/sum_att.s
 ASMS_x86_64_intel = build/x86_64/sum_intel.s
 
 # Rules
-all: build_dir $(TARGET) disassemble
+all: build_dir $(TARGET) disassemble intel_asm
 
 # Create build directory if it doesn't exist
 build_dir:
@@ -35,22 +35,25 @@ $(TARGET): $(OBJS_x86) $(OBJS_x86_64)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS_x86_64)
 
 # Compile to object files and retain intermediate assembly files for x86 (AT&T syntax)
-build/x86/%.o: %.c
+build/x86/sum.o: sum.c
 	$(CC) $(CFLAGS) -m32 -c $< -o $@
 	$(CC) -S $(CFLAGS) -m32 $< -o $(ASMS_x86_att)
 
 # Compile to assembly in Intel syntax for x86
-build/x86/%_intel.s: %.c
-	$(CC) $(CFLAGS) -m32 -S -masm=intel $< -o $(ASMS_x86_intel)
+build/x86/sum_intel.s: sum.c
+	$(CC) $(CFLAGS) -m32 -S -masm=intel $< -o $@
 
 # Compile to object files and retain intermediate assembly files for x86-64 (AT&T syntax)
-build/x86_64/%.o: %.c
+build/x86_64/sum.o: sum.c
 	$(CC) $(CFLAGS) -m64 -c $< -o $@
 	$(CC) -S $(CFLAGS) -m64 $< -o $(ASMS_x86_64_att)
 
 # Compile to assembly in Intel syntax for x86-64
-build/x86_64/%_intel.s: %.c
-	$(CC) $(CFLAGS) -m64 -S -masm=intel $< -o $(ASMS_x86_64_intel)
+build/x86_64/sum_intel.s: sum.c
+	$(CC) $(CFLAGS) -m64 -S -masm=intel $< -o $@
+
+# Generate Intel syntax assembly for both x86 and x86-64
+intel_asm: build/x86/sum_intel.s build/x86_64/sum_intel.s
 
 # Disassemble object files for both architectures
 disassemble: $(OBJS_x86) $(OBJS_x86_64)
