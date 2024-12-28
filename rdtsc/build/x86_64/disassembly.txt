@@ -1,0 +1,275 @@
+
+build/x86_64/sum_rdtsc.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <exampleFunction>:
+   0:	f3 0f 1e fa          	endbr64
+   4:	c7 44 24 fc 00 00 00 	movl   $0x0,-0x4(%rsp)
+   b:	00 
+   c:	85 ff                	test   %edi,%edi
+   e:	7e 19                	jle    29 <exampleFunction+0x29>
+  10:	31 c0                	xor    %eax,%eax
+  12:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  18:	8b 54 24 fc          	mov    -0x4(%rsp),%edx
+  1c:	01 c2                	add    %eax,%edx
+  1e:	83 c0 01             	add    $0x1,%eax
+  21:	89 54 24 fc          	mov    %edx,-0x4(%rsp)
+  25:	39 c7                	cmp    %eax,%edi
+  27:	75 ef                	jne    18 <exampleFunction+0x18>
+  29:	c3                   	ret
+  2a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000000030 <get_cpu_frequency>:
+  30:	f3 0f 1e fa          	endbr64
+  34:	41 54                	push   %r12
+  36:	48 8d 35 00 00 00 00 	lea    0x0(%rip),%rsi        # 3d <get_cpu_frequency+0xd>
+  3d:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 44 <get_cpu_frequency+0x14>
+  44:	55                   	push   %rbp
+  45:	53                   	push   %rbx
+  46:	48 81 ec a0 00 00 00 	sub    $0xa0,%rsp
+  4d:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  54:	00 00 
+  56:	48 89 84 24 98 00 00 	mov    %rax,0x98(%rsp)
+  5d:	00 
+  5e:	31 c0                	xor    %eax,%eax
+  60:	48 c7 44 24 08 00 00 	movq   $0x0,0x8(%rsp)
+  67:	00 00 
+  69:	e8 00 00 00 00       	call   6e <get_cpu_frequency+0x3e>
+  6e:	48 85 c0             	test   %rax,%rax
+  71:	0f 84 00 00 00 00    	je     77 <get_cpu_frequency+0x47>
+  77:	48 89 c5             	mov    %rax,%rbp
+  7a:	48 8d 5c 24 10       	lea    0x10(%rsp),%rbx
+  7f:	4c 8d 25 00 00 00 00 	lea    0x0(%rip),%r12        # 86 <get_cpu_frequency+0x56>
+  86:	eb 1f                	jmp    a7 <get_cpu_frequency+0x77>
+  88:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+  8f:	00 
+  90:	31 c0                	xor    %eax,%eax
+  92:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx
+  97:	4c 89 e6             	mov    %r12,%rsi
+  9a:	48 89 df             	mov    %rbx,%rdi
+  9d:	e8 00 00 00 00       	call   a2 <get_cpu_frequency+0x72>
+  a2:	83 f8 01             	cmp    $0x1,%eax
+  a5:	74 15                	je     bc <get_cpu_frequency+0x8c>
+  a7:	48 89 ea             	mov    %rbp,%rdx
+  aa:	be 80 00 00 00       	mov    $0x80,%esi
+  af:	48 89 df             	mov    %rbx,%rdi
+  b2:	e8 00 00 00 00       	call   b7 <get_cpu_frequency+0x87>
+  b7:	48 85 c0             	test   %rax,%rax
+  ba:	75 d4                	jne    90 <get_cpu_frequency+0x60>
+  bc:	48 89 ef             	mov    %rbp,%rdi
+  bf:	e8 00 00 00 00       	call   c4 <get_cpu_frequency+0x94>
+  c4:	f2 0f 10 05 00 00 00 	movsd  0x0(%rip),%xmm0        # cc <get_cpu_frequency+0x9c>
+  cb:	00 
+  cc:	f2 0f 59 44 24 08    	mulsd  0x8(%rsp),%xmm0
+  d2:	48 8b 84 24 98 00 00 	mov    0x98(%rsp),%rax
+  d9:	00 
+  da:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+  e1:	00 00 
+  e3:	75 0c                	jne    f1 <get_cpu_frequency+0xc1>
+  e5:	48 81 c4 a0 00 00 00 	add    $0xa0,%rsp
+  ec:	5b                   	pop    %rbx
+  ed:	5d                   	pop    %rbp
+  ee:	41 5c                	pop    %r12
+  f0:	c3                   	ret
+  f1:	e8 00 00 00 00       	call   f6 <get_cpu_frequency+0xc6>
+  f6:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+  fd:	00 00 00 
+
+0000000000000100 <get_cpu_core>:
+ 100:	f3 0f 1e fa          	endbr64
+ 104:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
+ 109:	c3                   	ret
+ 10a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000000110 <print_cpu_info>:
+ 110:	f3 0f 1e fa          	endbr64
+ 114:	41 57                	push   %r15
+ 116:	48 8d 35 00 00 00 00 	lea    0x0(%rip),%rsi        # 11d <print_cpu_info+0xd>
+ 11d:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 124 <print_cpu_info+0x14>
+ 124:	41 56                	push   %r14
+ 126:	41 55                	push   %r13
+ 128:	41 54                	push   %r12
+ 12a:	55                   	push   %rbp
+ 12b:	53                   	push   %rbx
+ 12c:	48 81 ec 18 01 00 00 	sub    $0x118,%rsp
+ 133:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+ 13a:	00 00 
+ 13c:	48 89 84 24 08 01 00 	mov    %rax,0x108(%rsp)
+ 143:	00 
+ 144:	31 c0                	xor    %eax,%eax
+ 146:	e8 00 00 00 00       	call   14b <print_cpu_info+0x3b>
+ 14b:	48 85 c0             	test   %rax,%rax
+ 14e:	0f 84 00 00 00 00    	je     154 <print_cpu_info+0x44>
+ 154:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 15b <print_cpu_info+0x4b>
+ 15b:	48 89 c5             	mov    %rax,%rbp
+ 15e:	48 89 e3             	mov    %rsp,%rbx
+ 161:	e8 00 00 00 00       	call   166 <print_cpu_info+0x56>
+ 166:	4c 8d 25 00 00 00 00 	lea    0x0(%rip),%r12        # 16d <print_cpu_info+0x5d>
+ 16d:	4c 8d 2d 00 00 00 00 	lea    0x0(%rip),%r13        # 174 <print_cpu_info+0x64>
+ 174:	4c 8d 35 00 00 00 00 	lea    0x0(%rip),%r14        # 17b <print_cpu_info+0x6b>
+ 17b:	4c 8d 3d 00 00 00 00 	lea    0x0(%rip),%r15        # 182 <print_cpu_info+0x72>
+ 182:	eb 16                	jmp    19a <print_cpu_info+0x8a>
+ 184:	0f 1f 40 00          	nopl   0x0(%rax)
+ 188:	48 89 da             	mov    %rbx,%rdx
+ 18b:	4c 89 ee             	mov    %r13,%rsi
+ 18e:	bf 02 00 00 00       	mov    $0x2,%edi
+ 193:	31 c0                	xor    %eax,%eax
+ 195:	e8 00 00 00 00       	call   19a <print_cpu_info+0x8a>
+ 19a:	48 89 ea             	mov    %rbp,%rdx
+ 19d:	be 00 01 00 00       	mov    $0x100,%esi
+ 1a2:	48 89 df             	mov    %rbx,%rdi
+ 1a5:	e8 00 00 00 00       	call   1aa <print_cpu_info+0x9a>
+ 1aa:	48 85 c0             	test   %rax,%rax
+ 1ad:	74 49                	je     1f8 <print_cpu_info+0xe8>
+ 1af:	4c 89 e6             	mov    %r12,%rsi
+ 1b2:	48 89 df             	mov    %rbx,%rdi
+ 1b5:	e8 00 00 00 00       	call   1ba <print_cpu_info+0xaa>
+ 1ba:	48 85 c0             	test   %rax,%rax
+ 1bd:	75 c9                	jne    188 <print_cpu_info+0x78>
+ 1bf:	4c 89 f6             	mov    %r14,%rsi
+ 1c2:	48 89 df             	mov    %rbx,%rdi
+ 1c5:	e8 00 00 00 00       	call   1ca <print_cpu_info+0xba>
+ 1ca:	48 85 c0             	test   %rax,%rax
+ 1cd:	75 b9                	jne    188 <print_cpu_info+0x78>
+ 1cf:	4c 89 fe             	mov    %r15,%rsi
+ 1d2:	48 89 df             	mov    %rbx,%rdi
+ 1d5:	e8 00 00 00 00       	call   1da <print_cpu_info+0xca>
+ 1da:	48 85 c0             	test   %rax,%rax
+ 1dd:	75 a9                	jne    188 <print_cpu_info+0x78>
+ 1df:	48 8d 35 00 00 00 00 	lea    0x0(%rip),%rsi        # 1e6 <print_cpu_info+0xd6>
+ 1e6:	48 89 df             	mov    %rbx,%rdi
+ 1e9:	e8 00 00 00 00       	call   1ee <print_cpu_info+0xde>
+ 1ee:	48 85 c0             	test   %rax,%rax
+ 1f1:	75 95                	jne    188 <print_cpu_info+0x78>
+ 1f3:	eb a5                	jmp    19a <print_cpu_info+0x8a>
+ 1f5:	0f 1f 00             	nopl   (%rax)
+ 1f8:	48 89 ef             	mov    %rbp,%rdi
+ 1fb:	e8 00 00 00 00       	call   200 <print_cpu_info+0xf0>
+ 200:	48 8b 84 24 08 01 00 	mov    0x108(%rsp),%rax
+ 207:	00 
+ 208:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+ 20f:	00 00 
+ 211:	75 12                	jne    225 <print_cpu_info+0x115>
+ 213:	48 81 c4 18 01 00 00 	add    $0x118,%rsp
+ 21a:	5b                   	pop    %rbx
+ 21b:	5d                   	pop    %rbp
+ 21c:	41 5c                	pop    %r12
+ 21e:	41 5d                	pop    %r13
+ 220:	41 5e                	pop    %r14
+ 222:	41 5f                	pop    %r15
+ 224:	c3                   	ret
+ 225:	e8 00 00 00 00       	call   22a <print_cpu_info+0x11a>
+
+Disassembly of section .text.unlikely:
+
+0000000000000000 <get_cpu_frequency.cold>:
+   0:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 7 <get_cpu_frequency.cold+0x7>
+   7:	e8 00 00 00 00       	call   c <get_cpu_frequency.cold+0xc>
+   c:	f2 0f 10 05 00 00 00 	movsd  0x0(%rip),%xmm0        # 14 <get_cpu_frequency.cold+0x14>
+  13:	00 
+  14:	e9 00 00 00 00       	jmp    19 <print_cpu_info.cold>
+
+0000000000000019 <print_cpu_info.cold>:
+  19:	48 8b 84 24 08 01 00 	mov    0x108(%rsp),%rax
+  20:	00 
+  21:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+  28:	00 00 
+  2a:	75 1d                	jne    49 <print_cpu_info.cold+0x30>
+  2c:	48 81 c4 18 01 00 00 	add    $0x118,%rsp
+  33:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 3a <print_cpu_info.cold+0x21>
+  3a:	5b                   	pop    %rbx
+  3b:	5d                   	pop    %rbp
+  3c:	41 5c                	pop    %r12
+  3e:	41 5d                	pop    %r13
+  40:	41 5e                	pop    %r14
+  42:	41 5f                	pop    %r15
+  44:	e9 00 00 00 00       	jmp    49 <print_cpu_info.cold+0x30>
+  49:	e8 00 00 00 00       	call   4e <.LC11+0x4>
+
+Disassembly of section .text.startup:
+
+0000000000000000 <main>:
+   0:	f3 0f 1e fa          	endbr64
+   4:	48 83 ec 28          	sub    $0x28,%rsp
+   8:	31 c0                	xor    %eax,%eax
+   a:	e8 00 00 00 00       	call   f <main+0xf>
+   f:	66 0f 28 c8          	movapd %xmm0,%xmm1
+  13:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  17:	66 0f 2f c1          	comisd %xmm1,%xmm0
+  1b:	0f 87 12 01 00 00    	ja     133 <main+0x133>
+  21:	48 8d 35 00 00 00 00 	lea    0x0(%rip),%rsi        # 28 <main+0x28>
+  28:	bf 02 00 00 00       	mov    $0x2,%edi
+  2d:	b8 01 00 00 00       	mov    $0x1,%eax
+  32:	f2 0f 11 4c 24 08    	movsd  %xmm1,0x8(%rsp)
+  38:	66 0f 28 c1          	movapd %xmm1,%xmm0
+  3c:	f2 0f 5e 05 00 00 00 	divsd  0x0(%rip),%xmm0        # 44 <main+0x44>
+  43:	00 
+  44:	e8 00 00 00 00       	call   49 <main+0x49>
+  49:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 50 <main+0x50>
+  50:	e8 00 00 00 00       	call   55 <main+0x55>
+  55:	31 c0                	xor    %eax,%eax
+  57:	e8 00 00 00 00       	call   5c <main+0x5c>
+  5c:	0f 31                	rdtsc
+  5e:	48 c1 e2 20          	shl    $0x20,%rdx
+  62:	c7 44 24 1c 00 00 00 	movl   $0x0,0x1c(%rsp)
+  69:	00 
+  6a:	89 c0                	mov    %eax,%eax
+  6c:	f2 0f 10 4c 24 08    	movsd  0x8(%rsp),%xmm1
+  72:	48 89 d6             	mov    %rdx,%rsi
+  75:	48 09 c6             	or     %rax,%rsi
+  78:	31 c0                	xor    %eax,%eax
+  7a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  80:	8b 4c 24 1c          	mov    0x1c(%rsp),%ecx
+  84:	01 c1                	add    %eax,%ecx
+  86:	83 c0 01             	add    $0x1,%eax
+  89:	89 4c 24 1c          	mov    %ecx,0x1c(%rsp)
+  8d:	3d 40 42 0f 00       	cmp    $0xf4240,%eax
+  92:	75 ec                	jne    80 <main+0x80>
+  94:	0f 31                	rdtsc
+  96:	48 c1 e2 20          	shl    $0x20,%rdx
+  9a:	89 c0                	mov    %eax,%eax
+  9c:	48 09 c2             	or     %rax,%rdx
+  9f:	48 29 f2             	sub    %rsi,%rdx
+  a2:	78 6e                	js     112 <main+0x112>
+  a4:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  a8:	f2 48 0f 2a c2       	cvtsi2sd %rdx,%xmm0
+  ad:	f2 0f 5e c1          	divsd  %xmm1,%xmm0
+  b1:	48 8d 35 00 00 00 00 	lea    0x0(%rip),%rsi        # b8 <main+0xb8>
+  b8:	bf 02 00 00 00       	mov    $0x2,%edi
+  bd:	31 c0                	xor    %eax,%eax
+  bf:	f2 0f 11 44 24 08    	movsd  %xmm0,0x8(%rsp)
+  c5:	e8 00 00 00 00       	call   ca <main+0xca>
+  ca:	f2 0f 10 44 24 08    	movsd  0x8(%rsp),%xmm0
+  d0:	bf 02 00 00 00       	mov    $0x2,%edi
+  d5:	48 8d 35 00 00 00 00 	lea    0x0(%rip),%rsi        # dc <main+0xdc>
+  dc:	b8 01 00 00 00       	mov    $0x1,%eax
+  e1:	e8 00 00 00 00       	call   e6 <main+0xe6>
+  e6:	f2 0f 10 05 00 00 00 	movsd  0x0(%rip),%xmm0        # ee <main+0xee>
+  ed:	00 
+  ee:	f2 0f 5e 44 24 08    	divsd  0x8(%rsp),%xmm0
+  f4:	f2 0f 2c d0          	cvttsd2si %xmm0,%edx
+  f8:	48 8d 35 00 00 00 00 	lea    0x0(%rip),%rsi        # ff <main+0xff>
+  ff:	bf 02 00 00 00       	mov    $0x2,%edi
+ 104:	31 c0                	xor    %eax,%eax
+ 106:	e8 00 00 00 00       	call   10b <main+0x10b>
+ 10b:	31 c0                	xor    %eax,%eax
+ 10d:	48 83 c4 28          	add    $0x28,%rsp
+ 111:	c3                   	ret
+ 112:	48 89 d0             	mov    %rdx,%rax
+ 115:	48 89 d1             	mov    %rdx,%rcx
+ 118:	66 0f ef c0          	pxor   %xmm0,%xmm0
+ 11c:	48 d1 e8             	shr    $1,%rax
+ 11f:	83 e1 01             	and    $0x1,%ecx
+ 122:	48 09 c8             	or     %rcx,%rax
+ 125:	f2 48 0f 2a c0       	cvtsi2sd %rax,%xmm0
+ 12a:	f2 0f 58 c0          	addsd  %xmm0,%xmm0
+ 12e:	e9 7a ff ff ff       	jmp    ad <main+0xad>
+ 133:	48 8b 0d 00 00 00 00 	mov    0x0(%rip),%rcx        # 13a <main+0x13a>
+ 13a:	ba 1c 00 00 00       	mov    $0x1c,%edx
+ 13f:	be 01 00 00 00       	mov    $0x1,%esi
+ 144:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 14b <main+0x14b>
+ 14b:	e8 00 00 00 00       	call   150 <main+0x150>
+ 150:	b8 01 00 00 00       	mov    $0x1,%eax
+ 155:	eb b6                	jmp    10d <main+0x10d>

@@ -1,0 +1,4 @@
+
+target/release/deps/liblibc-483e20c02272c790.rlib(lib.rmeta):	file format elf64-x86-64
+
+target/release/deps/liblibc-483e20c02272c790.rlib(libc-483e20c02272c790.libc.174a5cd78392e866-cgu.0.rcgu.o):	file format elf64-x86-64
