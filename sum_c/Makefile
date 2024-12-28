@@ -6,6 +6,7 @@ OBJDUMP = objdump
 
 # Compiler flags
 CFLAGS = -O3 -Wall -Wextra -Wpedantic -Wl,-Map,build/sum.map
+ASMFLAGS = -S -g -fverbose-asm
 
 # Target
 TARGET = build/sum
@@ -37,20 +38,20 @@ $(TARGET): $(OBJS_x86) $(OBJS_x86_64)
 # Compile to object files and retain intermediate assembly files for x86 (AT&T syntax)
 build/x86/sum.o: sum.c
 	$(CC) $(CFLAGS) -m32 -c $< -o $@
-	$(CC) -S $(CFLAGS) -m32 $< -o $(ASMS_x86_att)
+	$(CC) $(ASMFLAGS) -m32 $< -o $(ASMS_x86_att)
 
 # Compile to assembly in Intel syntax for x86
 build/x86/sum_intel.s: sum.c
-	$(CC) $(CFLAGS) -m32 -S -masm=intel $< -o $@
+	$(CC) $(ASMFLAGS) -masm=intel -m32 $< -o $@
 
 # Compile to object files and retain intermediate assembly files for x86-64 (AT&T syntax)
 build/x86_64/sum.o: sum.c
 	$(CC) $(CFLAGS) -m64 -c $< -o $@
-	$(CC) -S $(CFLAGS) -m64 $< -o $(ASMS_x86_64_att)
+	$(CC) $(ASMFLAGS) -m64 $< -o $(ASMS_x86_64_att)
 
 # Compile to assembly in Intel syntax for x86-64
 build/x86_64/sum_intel.s: sum.c
-	$(CC) $(CFLAGS) -m64 -S -masm=intel $< -o $@
+	$(CC) $(ASMFLAGS) -masm=intel -m64 $< -o $@
 
 # Generate Intel syntax assembly for both x86 and x86-64
 intel_asm: build/x86/sum_intel.s build/x86_64/sum_intel.s
