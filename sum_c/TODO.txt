@@ -1,0 +1,31 @@
+# 20250320 Thu fekerr
+
+built binary ./sum needs to be in x86 or x86_64 folders with the other built files
+not just one ./sum binary
+
+convert Makefile to other build systems:
+	e.g., cmake, ninja, mason?, bazel?
+	... CMakeLists.txt, ninja.build system (meson.build) or bazel.build system
+.
+├── Makefile
+├── build
+│   ├── sum
+│   ├── sum.map
+│   ├── x86
+
+sum and sum.map should be here
+
+│   │   ├── disassembly.txt
+│   │   ├── sum.o
+│   │   ├── sum_att.s
+│   │   └── sum_intel.s
+│   └── x86_64
+
+sum and sum.map should be here
+│       ├── disassembly.txt
+│       ├── sum.o
+│       ├── sum_att.s
+│       └── sum_intel.s
+├── readme_sum.md
+└── sum.c
+

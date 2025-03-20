@@ -508,4 +508,4 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
  *(.note.GNU-stack)
  *(.gnu_debuglink)
  *(.gnu.lto_*)
-OUTPUT(build/sum elf64-x86-64)
+OUTPUT(build/x86_64/sum elf64-x86-64)

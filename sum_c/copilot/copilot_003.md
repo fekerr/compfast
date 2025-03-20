@@ -1,3 +1,6 @@
+Got it! Here's an updated `Makefile` where the map file is placed in the appropriate directories (`x86` or `x86_64`) based on the architecture:
+
+```makefile
 # Makefile
 
 # Compiler and tools
@@ -81,3 +84,13 @@ clean:
 
 # Include dependencies
 -include $(DEP_X86) $(DEP_X86_64)
+```
+
+### Key Updates:
+1. **Architecture-Specific Map Files**:
+   - Added `$(BUILD_X86)/sum.map` for x86 and `$(BUILD_X86_64)/sum.map` for x86-64 in their respective `CFLAGS`.
+
+2. **Clear Separation**:
+   - Ensured the map files are generated in the correct directory for each architecture.
+
+Let me know if there’s anything else to refine!
