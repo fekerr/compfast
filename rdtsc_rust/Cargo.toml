@@ -1,0 +1,14 @@
+# 20241227 fekerr & copilot
+
+[package]
+name = "rdtsc_example"
+version = "0.1.0"
+authors = ["Fred Kerr <fekerr@gmail.com>"]
+edition = "2018"    # is this right?
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+libc = "0.2"
+
