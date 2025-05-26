@@ -23,6 +23,7 @@ JULES (Just Understandable Little Execution System) is a lightweight Python CLI 
     ```bash
     pip install -r requirements.txt
     ```
+    This will install all necessary packages, including `pytest` for testing and `memory_profiler` for the memory profiling decorator.
 
 ## Usage Examples
 
@@ -32,11 +33,30 @@ JULES (Just Understandable Little Execution System) is a lightweight Python CLI 
     ```
 
 2.  **Run a workload:**
-    To run the sample workload:
-    ```bash
-    python main.py run_workload sample_workload
-    ```
-    Replace `sample_workload` with the name of the workload you wish to run.
+    *   To run the sample workload:
+        ```bash
+        python main.py run_workload sample_workload
+        ```
+    *   To run the CPU-intensive Fibonacci workload:
+        ```bash
+        python main.py run_workload cpu_intensive_workload
+        ```
+    *   To run the I/O-bound file operations workload:
+        ```bash
+        python main.py run_workload io_bound_workload
+        ```
+    *   To run the prime number calculation workload (Segmented Sieve):
+        ```bash
+        python main.py run_workload prime_minimal_branching_workload
+        ```
+    Replace the workload name with the name of the workload you wish to run.
+
+## Available Decorators
+
+The framework provides the following decorators in `decorators/profiling.py`:
+
+*   `@time_it`: Measures and prints the execution time of the decorated function.
+*   `@memory_profile_it`: Measures and prints the memory usage (before, after, and difference) of the decorated function. This decorator relies on the `memory_profiler` library. If `memory_profiler` is not installed, it will print a warning and the function will execute without memory profiling.
 
 ## Project Structure
 
@@ -44,10 +64,16 @@ JULES (Just Understandable Little Execution System) is a lightweight Python CLI 
 -   `modules/`: Contains reusable Python modules with core application logic.
     -   `example_module.py`: An example module demonstrating basic functionality.
 -   `decorators/`: Houses custom decorators, such as for profiling.
-    -   `profiling.py`: Contains performance profiling decorators (e.g., `time_it`).
+    -   `profiling.py`: Contains performance profiling decorators (`time_it`, `memory_profile_it`).
 -   `workloads/`: Stores scripts that define specific tasks or operations to be executed by the CLI.
     -   `sample_workload.py`: An example workload script.
--   `tests/`: Contains unit tests for the project (not yet implemented).
+    -   `cpu_intensive_workload.py`: A workload that performs a CPU-bound task (Fibonacci calculation).
+    -   `io_bound_workload.py`: A workload that simulates I/O-bound tasks (file operations).
+    -   `prime_minimal_branching_workload.py`: Calculates prime numbers up to a given limit using a segmented sieve algorithm, designed to be friendly for chunked/parallel processing. Demonstrates a more complex algorithmic workload.
+-   `tests/`: Contains unit tests for the project.
+    -   `test_example_module.py`: Tests for `modules/example_module.py`.
+    -   `test_profiling.py`: Tests for the decorators in `decorators/profiling.py`.
+    -   `test_prime_minimal_branching.py`: Tests for the prime number generation functions in `prime_minimal_branching_workload.py`.
 -   `jules/`: Intended for verbose logging output and other runtime-generated files (currently gitignored).
 -   `requirements.txt`: Lists project dependencies.
 -   `.gitignore`: Specifies intentionally untracked files that Git should ignore.
@@ -63,7 +89,7 @@ Here are some open-source projects that could be beneficial for extending this f
 
 ### Profiling Libraries
 *   **cProfile and pstats:** Built-in Python modules for deterministic profiling. `cProfile` collects profiling data, and `pstats` helps analyze it. Good for understanding time spent in different functions.
-*   **memory-profiler:** A Python module for monitoring memory consumption of a process as well as line-by-line memory consumption of functions.
+*   **memory-profiler:** (Already included in `requirements.txt`) A Python module for monitoring memory consumption of a process as well as line-by-line memory consumption of functions.
 *   **Pyinstrument:** A statistical profiler that records the call stack every millisecond. It has lower overhead than deterministic profilers like cProfile and can be easier to interpret for some use cases.
 *   **Scalene:** A high-performance CPU and memory profiler for Python that does line-level profiling and can also identify issues related to multi-threading and GPU usage.
 
