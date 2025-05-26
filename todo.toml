@@ -1,0 +1,15 @@
+# This file is intended to manually track features or tests that are problematic
+# or temporarily disabled. It's for human reference and potential future
+# programmatic use.
+#
+# Example entry format (conceptual):
+# [feature_xyz]
+# status = "disabled" # or "problematic", "under_review"
+# reason = "Related to Bug #123 in external library."
+# reenable_by = "2024-12-31"
+# owner = "team_alpha"
+#
+# [test_specific_workload]
+# status = "skipped_in_ci"
+# reason = "Test is flaky and needs investigation. See issue #456."
+# condition_to_reenable = "After issue #456 is resolved."

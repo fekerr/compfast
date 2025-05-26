@@ -1,0 +1,13 @@
+app_name = "PythonProfilingFramework"
+log_level = "INFO" # Possible values: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+[workload_defaults]
+# Example: default number of iterations for a generic workload
+default_iterations = 100
+# Example: default path for some shared resource workloads might use
+# shared_resource_path = "/data/shared"
+
+[profiling]
+# Enable or disable specific profilers by default
+enable_time_profiler = true
+enable_memory_profiler = true
