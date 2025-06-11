@@ -93,10 +93,10 @@ class TestGaussianPrimes(unittest.TestCase):
     def test_generate_gaussian_primes_properties(self):
         limit = 50
         generated_primes = generate_gaussian_primes(limit)
-        
+
         # Check for uniqueness (already handled by set in implementation, but verify list output)
         self.assertEqual(len(generated_primes), len(set(generated_primes)), "Generated list should be unique")
-        
+
         # Check if sorted (as per implementation detail)
         self.assertEqual(generated_primes, sorted(generated_primes), "Generated list should be sorted")
 
@@ -115,4 +115,3 @@ class TestGaussianPrimes(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-```

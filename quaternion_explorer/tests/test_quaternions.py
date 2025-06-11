@@ -19,7 +19,7 @@ class TestQuaternion(unittest.TestCase):
 
         q3 = Quaternion(0, 0, 0, 0)
         self.assertEqual(str(q3), "(0 + 0i + 0j + 0k)")
-        
+
         q4 = Quaternion(-1, -2, -3, -4)
         self.assertEqual(str(q4), "(-1 - 2i - 3j - 4k)")
 
@@ -33,7 +33,7 @@ class TestQuaternion(unittest.TestCase):
 
         q3 = Quaternion(1, -1, 1, -1)
         self.assertEqual(q3.norm_squared(), 1*1 + (-1)*(-1) + 1*1 + (-1)*(-1)) # 4
-        
+
         q4 = Quaternion(5, 0, 0, 0)
         self.assertEqual(q4.norm_squared(), 25)
 
@@ -46,22 +46,9 @@ class TestQuaternion(unittest.TestCase):
         self.assertTrue(Quaternion(1, 2, 0, 0).is_prime(), "Q(1,2,0,0) norm_sq=5, gcd=1 -> should be prime")
         self.assertTrue(Quaternion(1, 1, 1, 2).is_prime(), "Q(1,1,1,2) norm_sq=7, gcd=1 -> should be prime")
         self.assertTrue(Quaternion(3, 1, 1, 0).is_prime(), "Q(3,1,1,0) norm_sq=11, gcd=1 -> should be prime") # 9+1+1=11
-        self.assertTrue(Quaternion(1, 2, 3, 0).is_prime(), "Q(1,2,3,0) norm_sq=14 (not prime) -> Error in reasoning, 1+4+9=14, not prime.")
-        # Correcting the previous line's reasoning:
-        # Q(1,2,3,0).norm_squared() is 1+4+9 = 14. 14 is not prime. So Q(1,2,3,0) is NOT prime.
-        # This case should be in test_is_prime_false_norm_not_prime.
-
-        # More true cases:
+        # Corrected cases from previous thoughts:
         self.assertTrue(Quaternion(2,1,1,1).is_prime(), "Q(2,1,1,1) norm_sq=7 (prime), gcd=1 -> should be prime")
-        self.assertTrue(Quaternion(0,1,2,2).is_prime(), "Q(0,1,2,2) norm_sq=9 (not prime). Error in reasoning again." )
-        # Q(0,1,2,2) -> norm_sq = 0+1+4+4 = 9. Not prime.
-
-        # Let's pick some with prime norms:
-        # Norm 2: (1,1,0,0) - done
-        # Norm 3: (1,1,1,0) - done
-        # Norm 5: (1,2,0,0), (2,1,0,0) - done. Also (1,0,2,0), (0,1,0,2) etc. (0,0,1,2)
         self.assertTrue(Quaternion(0,0,1,2).is_prime(), "Q(0,0,1,2) norm_sq=5, gcd=1 -> should be prime")
-        # Norm 7: (2,1,1,1) - done. (1,2,1,1), (1,1,2,1), (1,1,1,2)
         self.assertTrue(Quaternion(1,2,1,1).is_prime(), "Q(1,2,1,1) norm_sq=7, gcd=1 -> should be prime")
 
 
@@ -76,29 +63,13 @@ class TestQuaternion(unittest.TestCase):
 
 
     def test_is_prime_false_not_primitive_but_norm_is_prime(self):
-        # As discussed, if norm_squared is prime, gcd must be 1.
-        # So this specific category (norm_sq prime AND gcd > 1) is impossible.
-        # The is_prime() method checks norm first. If norm is not prime, it's False.
-        # If norm IS prime, it then checks gcd. But gcd will always be 1 in this case.
-        # So, we can't really test this exact combination.
-        # We test cases where gcd > 1, which will typically mean norm_sq is not prime.
-        # These are covered by test_is_prime_false_norm_not_prime.
-        # Example: Q(2,2,0,0). norm_sq=8 (not prime). gcd=2. is_prime() -> False.
-        # If the logic was: check gcd first. If gcd > 1, return False.
-        # Then Q(2,2,0,0) would be caught by gcd.
-        # Current Quaternion.is_prime():
-        #   1. check norm_sq. If not prime, return False. (e.g. Q(2,2,0,0) -> norm_sq=8, returns False)
-        #   2. check gcd. If > 1, return False. (This won't be hit if norm_sq was prime)
-        # This test is more about ensuring the gcd check works if it were reached.
-        # Consider a hypothetical scenario or ensure the paths are covered.
-        # The current structure of is_prime implies that if norm_sq is prime, then gcd must be 1.
-        # Thus, any quaternion with gcd > 1 cannot have a prime norm_sq.
+        # This case is impossible if norm_squared being prime implies primitivity.
+        # Tests where gcd > 1 are covered by norm_not_prime, as g^2 * N(q') = p implies g=1.
         q_non_primitive = Quaternion(2,2,0,0) # norm_sq = 8 (not prime), gcd = 2
         self.assertFalse(q_non_primitive.is_prime())
-
         q_non_primitive2 = Quaternion(3,3,3,0) # norm_sq = 27 (not prime), gcd = 3
         self.assertFalse(q_non_primitive2.is_prime())
-        pass # Test is implicitly covered by existing tests.
+        pass
 
     def test_zero_quaternion_not_prime(self):
         self.assertFalse(Quaternion(0,0,0,0).is_prime(), "Q(0,0,0,0) should not be prime")
@@ -112,7 +83,7 @@ class TestQuaternion(unittest.TestCase):
 
         self.assertEqual(str(q_iden * q_gen), str(q_gen))
         self.assertEqual(str(q_gen * q_iden), str(q_gen))
-        
+
         self.assertEqual(str(q_zero * q_gen), str(q_zero))
         self.assertEqual(str(q_gen * q_zero), str(q_zero))
 
@@ -153,21 +124,12 @@ class TestQuaternion(unittest.TestCase):
         q3 = Quaternion(1,0,0,0) # Identity
         q4 = Quaternion(0,1,2,3)
         self.assertEqual(str(q3*q4), str(q4))
-        
-        # (1+i) * (1+j) = (0,1,1,0) * (0,0,1,1) ? No this is wrong.
-        # (1+i) = Q(1,1,0,0)
-        # (1+j) = Q(1,0,1,0)
-        # a = 1*1 - 1*0 - 0*1 - 0*0 = 1
-        # b = 1*0 + 1*1 + 0*0 - 0*1 = 1 (i component)
-        # c = 1*1 - 1*0 + 0*1 + 0*0 = 1 (j component)
-        # d = 1*0 + 1*1 - 0*0 + 0*1 = 1 (k component)
-        # Result: Q(1,1,1,1)
-        qa = Quaternion(1,1,0,0)
-        qb = Quaternion(1,0,1,0)
-        expected_q_ab = Quaternion(1,1,1,1)
+
+        qa = Quaternion(1,1,0,0) # (1+i)
+        qb = Quaternion(1,0,1,0) # (1+j)
+        expected_q_ab = Quaternion(1,1,1,1) # (1+i)(1+j) = 1+i+j+k
         self.assertEqual(str(qa*qb), str(expected_q_ab))
 
 
 if __name__ == '__main__':
     unittest.main()
-```

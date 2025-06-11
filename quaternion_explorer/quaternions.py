@@ -61,25 +61,25 @@ class Quaternion:
         parts = []
         # Real part
         parts.append(str(self.a))
-        
+
         # Imaginary part i
         if self.b >= 0:
             parts.append(f"+ {self.b}i")
         else:
             parts.append(f"- {abs(self.b)}i")
-            
+
         # Imaginary part j
         if self.c >= 0:
             parts.append(f"+ {self.c}j")
         else:
             parts.append(f"- {abs(self.c)}j")
-            
+
         # Imaginary part k
         if self.d >= 0:
             parts.append(f"+ {self.d}k")
         else:
             parts.append(f"- {abs(self.d)}k")
-            
+
         return f"({parts[0]} {parts[1][2:] if parts[1].startswith('+ ') else parts[1]} {parts[2][2:] if parts[2].startswith('+ ') else parts[2]} {parts[3][2:] if parts[3].startswith('+ ') else parts[3]})"
         # A slightly better repr to match the example (1 - 2i + 0j - 4k)
         # Let's refine __repr__ formatting logic.
@@ -99,9 +99,9 @@ class Quaternion:
             sign = ""
             if not is_first:
                 sign = "+ " if value >= 0 else "- "
-            
+
             val_abs = abs(value)
-            
+
             # For the first component (real part a), show sign only if negative
             if is_first and value < 0:
                 sign = "-" # No space after for the first term if negative, e.g. -1
@@ -122,9 +122,9 @@ class Quaternion:
         s_b = format_component(self.b, "i")
         s_c = format_component(self.c, "j")
         s_d = format_component(self.d, "k")
-        
+
         return f"({s_a} {s_b} {s_c} {s_d})"
-    
+
     # Using the __repr__ from the prompt's guidance directly now:
     def __repr__(self):
         """
@@ -134,12 +134,12 @@ class Quaternion:
         """
         # Start with the real part
         res = str(self.a)
-        
+
         # Add imaginary parts
         res += f" + {self.b}i" if self.b >= 0 else f" - {abs(self.b)}i"
         res += f" + {self.c}j" if self.c >= 0 else f" - {abs(self.c)}j"
         res += f" + {self.d}k" if self.d >= 0 else f" - {abs(self.d)}k"
-        
+
         return f"({res})"
 
 
@@ -159,7 +159,7 @@ class Quaternion:
         norm_sq = self.norm_squared()
         if not self._is_prime(norm_sq):
             return False
-        
+
         # Check for primitivity
         # A zero quaternion (0,0,0,0) has norm_sq 0, so _is_prime(0) is False.
         # If any component is non-integer, this definition might be problematic,
@@ -167,7 +167,7 @@ class Quaternion:
         common_divisor = self._gcd_four(self.a, self.b, self.c, self.d)
         if common_divisor != 1:
             return False
-            
+
         return True
 
     def __mul__(self, other):
@@ -213,7 +213,7 @@ if __name__ == '__main__':
     # Test _is_prime helper (indirectly via Quaternion.is_prime)
     # Need some known prime quaternions.
     # Q = a+bi+cj+dk is prime if norm_squared is prime AND gcd(a,b,c,d)=1
-    
+
     # Example 1: Q = 1+1i+1j+1k. Norm_sq = 1+1+1+1 = 4. Not prime (norm_sq not prime).
     q_1111 = Quaternion(1,1,1,1)
     print(f"q_1111: {q_1111}, norm_sq: {q_1111.norm_squared()}, is_prime: {q_1111.is_prime()}") # Expected: False (norm 4 is not prime)
@@ -279,7 +279,7 @@ if __name__ == '__main__':
     print(f"N_sq(qm1): {qm1.norm_squared()}") # Expected: 7
     print(f"N_sq(qm2): {qm2.norm_squared()}") # Expected: 7
     print(f"N_sq(q_prod): {q_prod.norm_squared()}") # Expected: 49
-    
+
     # Test _gcd_four
     # Using q_2200 = Quaternion(2,2,0,0). gcd(2,2,0,0) = 2.
     # This is tested by q_2200.is_prime() being False.
@@ -290,7 +290,7 @@ if __name__ == '__main__':
     # print(f"gcd_four(0,0,0,0): {q_zero._gcd_four(0,0,0,0)}") # Expected: 0. is_prime handles this.
     # What if one value is negative? abs() in _gcd_four handles this.
     # print(f"gcd_four(-2,4,-6,8): {Quaternion(-2,4,-6,8)._gcd_four(-2,4,-6,8)}") # Expected: 2
-    
+
     # A quaternion where norm_sq is prime, but not primitive
     # Q = 2+2i+0j+0k. Norm_sq = 8 (not prime).
     # Q = 2+1i+1j+0k. Norm_sq = 4+1+1 = 6 (not prime).
