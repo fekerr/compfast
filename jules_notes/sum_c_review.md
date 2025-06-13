@@ -1,4 +1,7 @@
 # Review: `sum_c` Project
+**Reviewed by:** jules.google.com
+**Date:** 2024-07-30
+**Version:** https://jules.google.com/task/15523307002962920642
 
 This project contains a very simple C program that calculates the sum of integers up to a given number, primarily designed to demonstrate compilation and assembly generation for different x86 targets.
 
@@ -17,11 +20,11 @@ This project contains a very simple C program that calculates the sum of integer
     *   Defines `CC`, `OBJDUMP`, `CFLAGS`, `ASMFLAGS`.
     *   Specifies different output directories for x86 (`build/x86`) and x86_64 (`build/x86_64`).
 *   **Targets:**
-    *   `all`: Builds both x86 and x86_64 versions.
+    *   `all`: Builds object files and assembly for both x86 (`-m32`) and x86_64 (`-m64`) versions. The primary linked executable (`build/sum`) is the x86_64 version.
     *   `build_dirs`: Creates necessary build directories.
     *   Compilation rules for `.o` files for both `x86` (with `-m32`) and `x86_64` (with `-m64`).
     *   Assembly generation rules for both AT&T (`_att.s`) and Intel (`_intel.s`) syntax for both architectures. This is comprehensive.
-    *   `disassemble` targets for both architectures.
+    *   `disassemble` targets for both architectures, using `objdump` on their respective object files.
 *   **Clarity:** The Makefile is well-organized and makes it clear how to generate different outputs.
 *   **Usefulness:** Excellent for understanding how C code translates to assembly on different x86 modes and in different syntaxes.
 
