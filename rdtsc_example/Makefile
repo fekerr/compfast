@@ -34,4 +34,3 @@ help:
 	@echo "  run         - Run the project and redirect output to a file"
 	@echo "  clean       - Clean up generated files"
 	@echo "  help        - Display this help message"
-

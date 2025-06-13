@@ -47,7 +47,7 @@ def memory_profile_it(func):
     - Memory usage before execution (MiB)
     - Memory usage after execution (MiB)
     - Difference in memory usage (MiB)
-  
+
   If 'memory_profiler' is not installed, it prints a warning and does not profile memory.
   """
   @functools.wraps(func)
@@ -75,14 +75,14 @@ def memory_profile_it(func):
     # The `memory_usage` function when given a callable directly will execute it and return
     # a list of memory samples taken during its execution. The max of these is the peak.
     # The first sample can be considered "before" (or close to it, as setup for profiling happens).
-    
+
     # Simpler approach: get memory at points, similar to time_it
     # Get memory of current process (-1 means current process)
     mem_snapshots = memory_usage(proc=-1, interval=0.001, timestamps=False, include_children=False, retval=True, max_usage=False)
     mem_before = mem_snapshots[0] # First value is current memory usage
 
     result = func(*args, **kwargs)
-    
+
     mem_snapshots_after = memory_usage(proc=-1, interval=0.001, timestamps=False, include_children=False, retval=True, max_usage=False)
     mem_after = mem_snapshots_after[0]
 

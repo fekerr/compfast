@@ -130,7 +130,7 @@ main:
 	.cfi_restore 5
 	leal	-4(%ecx), %esp	#,
 	.cfi_def_cfa 4, 4
-	ret	
+	ret
 	.cfi_endproc
 .LFE6:
 	.size	main, .-main

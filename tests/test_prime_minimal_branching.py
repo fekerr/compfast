@@ -6,7 +6,6 @@ This module contains tests for:
 - `find_primes_in_segment`: For finding primes within a specific numerical range
   using a list of base primes.
 """
-import pytest
 import sys
 import os
 import math
@@ -66,7 +65,7 @@ def test_find_primes_in_segment_no_primes():
   """
   base_primes_sqrt_30 = simple_sieve(int(math.sqrt(30))) # [2, 3, 5]
   assert base_primes_sqrt_30 == [2, 3, 5]
-  
+
   # Segment [24, 26] contains 24 (2*12), 25 (5*5), 26 (2*13). No primes.
   assert find_primes_in_segment(24, 26, base_primes_sqrt_30) == [], \
     "Test Case 3: Segment [24, 26] (no primes)"
@@ -77,7 +76,7 @@ def test_find_primes_in_segment_small_segment():
   """
   base_primes_sqrt_10 = simple_sieve(int(math.sqrt(10))) # [2, 3]
   assert base_primes_sqrt_10 == [2, 3]
-  
+
   # Segment [8, 10] contains 8, 9, 10. No primes.
   assert find_primes_in_segment(8, 10, base_primes_sqrt_10) == [], \
     "Test Case 4: Segment [8, 10] (no primes)"
@@ -145,21 +144,4 @@ def test_find_primes_in_segment_empty_base_primes():
     # It would call find_primes_in_segment(2, 3, [])
     # This would return [2,3]. Then all_primes (initially []) extends with [2,3]. Correct.
     assert find_primes_in_segment(2, 3, []) == [2,3]
-    assert find_primes_in_segment(0, 1, []) == [] # Due to num > 1 check.Okay, I've created the test file `tests/test_prime_minimal_branching.py` with the specified structure and tests.
-
-Here's a summary of what I did:
-1.  **File Creation**: Created `tests/test_prime_minimal_branching.py`.
-2.  **Imports**: Added `pytest`, `sys`, `os`, `math`, and imported `simple_sieve`, `find_primes_in_segment` from `workloads.prime_minimal_branching_workload`. Included the `sys.path.append` boilerplate.
-3.  **Docstrings**: Added a module-level docstring and docstrings for each test function.
-4.  **`test_simple_sieve_basic()`**: Implemented with assertions for `simple_sieve(10)` and `simple_sieve(20)`.
-5.  **`test_simple_sieve_edge_cases()`**: Implemented with assertions for `simple_sieve(2)`, `simple_sieve(1)`, and `simple_sieve(0)`.
-6.  **`test_find_primes_in_segment_basic()`**: Implemented. Calculated `base_primes` using `simple_sieve(int(math.sqrt(100)))`. Asserted results for segments `[10, 30]` and `[90, 100]`.
-7.  **`test_find_primes_in_segment_no_primes()`**: Implemented. Calculated `base_primes` using `simple_sieve(int(math.sqrt(30)))`. Asserted an empty list for segment `[24, 26]`.
-8.  **`test_find_primes_in_segment_small_segment()`**: Implemented. Calculated `base_primes` using `simple_sieve(int(math.sqrt(10)))`. Asserted an empty list for segment `[8, 10]`.
-9.  **Additional Tests for `find_primes_in_segment`**: I also added a few more test cases for `find_primes_in_segment` to cover scenarios like:
-    *   `test_find_primes_in_segment_with_base_prime`: Segment contains base primes themselves.
-    *   `test_find_primes_in_segment_edge_case_one`: Segment includes 0 and 1.
-    *   `test_find_primes_in_segment_start_with_base_prime_square`: Segment starts at the square of a base prime.
-    *   `test_find_primes_in_segment_empty_base_primes`: `base_primes` list is empty (this tests `find_primes_in_segment` in isolation, acknowledging that the main workload might prevent this call for very small N).
-
-The tests seem to cover the requested scenarios and some additional edge cases for robustness.
+    assert find_primes_in_segment(0, 1, []) == [] # Due to num > 1 check.

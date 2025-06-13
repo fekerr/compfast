@@ -10,6 +10,7 @@ JULES (Just Understandable Little Execution System) is a lightweight Python CLI 
 - [Application Logging](#application-logging)
 - [Available Decorators](#available-decorators)
 - [CI/CD Pipeline](#cicd-pipeline)
+- [Pre-commit Hooks for Local Development](#pre-commit-hooks-for-local-development)
 - [Feature and Issue Management (`todo.toml`)](#feature-and-issue-management-todotoml)
 - [Design Notes (`DESIGN_NOTES.md`)](#design-notes-design_notesmd)
 - [Suggested Open Source Projects](#suggested-open-source-projects)
@@ -35,7 +36,15 @@ JULES (Just Understandable Little Execution System) is a lightweight Python CLI 
     ```bash
     pip install -r requirements.txt
     ```
-    This will install all necessary packages, including `pytest` for testing, `memory_profiler` for the memory profiling decorator, `flake8` for linting, and `toml` for configuration file parsing.
+    This will install all necessary packages, including `pytest` for testing, `memory_profiler` for the memory profiling decorator, `flake8` for linting, `toml` for configuration file parsing, and `pre-commit` for git hook management.
+
+4.  **(Optional but Recommended) Set up Pre-commit Hooks:**
+    After cloning the repository and installing dependencies, install the git hooks:
+    ```bash
+    pre-commit install
+    ```
+    See the [Pre-commit Hooks](#pre-commit-hooks-for-local-development) section for more details.
+
 
 ## Usage Examples
 
@@ -69,6 +78,7 @@ JULES (Just Understandable Little Execution System) is a lightweight Python CLI 
 -   `config.toml`: Application-wide configuration file (see [Configuration](#configuration-configtoml) section).
 -   `todo.toml`: For manual tracking of features or problematic tests (see [Feature and Issue Management](#feature-and-issue-management-todotoml) section).
 -   `DESIGN_NOTES.md`: Contains notes on potential future development and architectural considerations.
+-   `.pre-commit-config.yaml`: Configuration for pre-commit hooks (see [Pre-commit Hooks](#pre-commit-hooks-for-local-development) section).
 -   `modules/`: Contains reusable Python modules with core application logic.
     -   `example_module.py`: An example module demonstrating basic functionality.
     -   `app_logging.py`: Configures the application's logging system (see [Application Logging](#application-logging) section).
@@ -159,10 +169,7 @@ The CI pipeline is defined in the workflow file: `.github/workflows/python_ci.ym
     *   Pushes to the `main` branch.
     *   Pull requests targeting the `main` branch.
 2.  **Environment:** The jobs run on an `ubuntu-latest` runner provided by GitHub Actions.
-3.  **Python Version Matrix:** Tests are executed across multiple Python versions to ensure compatibility:
-    *   Python 3.9
-    *   Python 3.10
-    *   Python 3.11
+3.  **Python Version Matrix:** Tests are executed across multiple Python versions to ensure compatibility (currently configured for Python 3.12).
 4.  **Code Linting:**
     *   Flake8 is used to lint the Python codebase for style consistency and potential errors. Configuration for Flake8 can be found in the `.flake8` file.
 5.  **Unit Testing & Coverage:**
@@ -176,6 +183,50 @@ The CI pipeline is defined in the workflow file: `.github/workflows/python_ci.ym
 The status of CI runs for your pushes and pull requests can be monitored directly on GitHub:
 *   Navigate to the "Actions" tab of the project repository.
 *   Here you will find a list of all workflow runs, their status (success, failure, in progress), and detailed logs for each step.
+
+## Pre-commit Hooks for Local Development
+
+To help maintain code quality and catch issues before they are committed to the repository, this project is configured to use `pre-commit`. Pre-commit hooks automatically run checks (like linting and code formatting) on your code each time you make a commit.
+
+**Purpose:**
+*   **Automated Checks:** Runs linters (Flake8) and other checks automatically.
+*   **Early Issue Detection:** Catches common issues, style violations, and potential errors before they enter the codebase or CI pipeline.
+*   **Consistent Code Style:** Helps ensure all contributions adhere to the project's coding standards.
+
+**Setup Instructions:**
+1.  **Install pre-commit:**
+    The `pre-commit` package is listed in `requirements.txt` and will be installed when you run `pip install -r requirements.txt`. If you need to install or upgrade it separately:
+    ```bash
+    pip install pre-commit
+    ```
+
+2.  **Set up the git hooks:**
+    Navigate to the root directory of your local clone of this repository and run:
+    ```bash
+    pre-commit install
+    ```
+    This command needs to be run only once per clone of the repository. It installs the hooks into your local `.git/hooks` directory. From now on, the configured hooks will run automatically on `git commit`.
+
+**Running Hooks Manually:**
+You can also run the pre-commit hooks manually at any time:
+*   **On all files in the project:**
+    ```bash
+    pre-commit run --all-files
+    ```
+    This is useful for checking the entire codebase or after making changes to the hook configurations.
+
+*   **On staged files (simulates what happens on commit):**
+    ```bash
+    pre-commit run
+    ```
+    This will run the hooks only on files that are currently staged for commit. If a hook modifies a file, you will need to `git add` the changes again before committing.
+
+**Configuration:**
+The pre-commit hooks are configured in the `.pre-commit-config.yaml` file located in the root of the project. This file specifies which repositories and hooks to use. Currently, it includes:
+*   General file checks from `pre-commit-hooks` (e.g., `trailing-whitespace`, `end-of-file-fixer`, `check-yaml`, `check-toml`).
+*   Python linting using `flake8` with settings that match the project's `.flake8` configuration.
+
+If a pre-commit hook makes a change to a file (e.g., removes trailing whitespace), the commit will be aborted. Review the changes, `git add` the modified files, and then try committing again.
 
 ## Feature and Issue Management (`todo.toml`)
 

@@ -131,7 +131,7 @@ main:
 	.cfi_restore 5
 	lea	esp, -4[ecx]	#,
 	.cfi_def_cfa 4, 4
-	ret	
+	ret
 	.cfi_endproc
 .LFE6:
 	.size	main, .-main

@@ -22,7 +22,7 @@ rdtsc:
 	.loc 1 11 5
 #APP
 # 11 "sum_rdtsc.c" 1
-	rdtsc	
+	rdtsc
 # 0 "" 2
 #NO_APP
 	movl	%eax, -8(%rbp)	# lo, lo
@@ -42,7 +42,7 @@ rdtsc:
 	.loc 1 13 1
 	popq	%rbp	#
 	.cfi_def_cfa 7, 8
-	ret	
+	ret
 	.cfi_endproc
 .LFE0:
 	.size	rdtsc, .-rdtsc
@@ -52,7 +52,7 @@ exampleFunction:
 .LFB1:
 	.loc 1 16 38
 	.cfi_startproc
-	endbr64	
+	endbr64
 	pushq	%rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -88,11 +88,11 @@ exampleFunction:
 .LBE2:
 # sum_rdtsc.c:21: }
 	.loc 1 21 1
-	nop	
-	nop	
+	nop
+	nop
 	popq	%rbp	#
 	.cfi_def_cfa 7, 8
-	ret	
+	ret
 	.cfi_endproc
 .LFE1:
 	.size	exampleFunction, .-exampleFunction
@@ -112,7 +112,7 @@ get_cpu_frequency:
 .LFB2:
 	.loc 1 24 28
 	.cfi_startproc
-	endbr64	
+	endbr64
 	pushq	%rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -179,7 +179,7 @@ get_cpu_frequency:
 .L14:
 # sum_rdtsc.c:37:             break;
 	.loc 1 37 13 is_stmt 1
-	nop	
+	nop
 .L10:
 # sum_rdtsc.c:41:     fclose(fp);
 	.loc 1 41 5
@@ -199,9 +199,9 @@ get_cpu_frequency:
 	je	.L13	#,
 	call	__stack_chk_fail@PLT	#
 .L13:
-	leave	
+	leave
 	.cfi_def_cfa 7, 8
-	ret	
+	ret
 	.cfi_endproc
 .LFE2:
 	.size	get_cpu_frequency, .-get_cpu_frequency
@@ -211,7 +211,7 @@ get_cpu_core:
 .LFB3:
 	.loc 1 46 20
 	.cfi_startproc
-	endbr64	
+	endbr64
 	pushq	%rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -224,7 +224,7 @@ get_cpu_core:
 	.loc 1 52 1
 	popq	%rbp	#
 	.cfi_def_cfa 7, 8
-	ret	
+	ret
 	.cfi_endproc
 .LFE3:
 	.size	get_cpu_core, .-get_cpu_core
@@ -248,7 +248,7 @@ print_cpu_info:
 .LFB4:
 	.loc 1 55 23
 	.cfi_startproc
-	endbr64	
+	endbr64
 	pushq	%rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -366,9 +366,9 @@ print_cpu_info:
 	je	.L24	#,
 	call	__stack_chk_fail@PLT	#
 .L24:
-	leave	
+	leave
 	.cfi_def_cfa 7, 8
-	ret	
+	ret
 	.cfi_endproc
 .LFE4:
 	.size	print_cpu_info, .-print_cpu_info
@@ -396,7 +396,7 @@ main:
 .LFB5:
 	.loc 1 76 12
 	.cfi_startproc
-	endbr64	
+	endbr64
 	pushq	%rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -550,9 +550,9 @@ main:
 .L28:
 # sum_rdtsc.c:109: }
 	.loc 1 109 1
-	leave	
+	leave
 	.cfi_def_cfa 7, 8
-	ret	
+	ret
 	.cfi_endproc
 .LFE5:
 	.size	main, .-main

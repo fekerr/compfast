@@ -57,4 +57,3 @@ run: $(TARGET)
 # Clean up generated files
 clean:
 	rm -rf build
-

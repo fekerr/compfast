@@ -1,5 +1,6 @@
 flake8
 memory_profiler
+pre-commit
 pytest
 pytest-cov
 toml

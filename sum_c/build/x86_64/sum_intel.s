@@ -23,7 +23,7 @@ main:
 	.file 1 "sum.c"
 	.loc 1 9 33
 	.cfi_startproc
-	endbr64	
+	endbr64
 	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -108,9 +108,9 @@ main:
 	mov	eax, 0	# _19,
 # sum.c:28: }
 	.loc 1 28 1
-	leave	
+	leave
 	.cfi_def_cfa 7, 8
-	ret	
+	ret
 	.cfi_endproc
 .LFE6:
 	.size	main, .-main

@@ -7,7 +7,7 @@ Disassembly of section .text:
 0000000000000000 <exampleFunction>:
    0:	f3 0f 1e fa          	endbr64
    4:	c7 44 24 fc 00 00 00 	movl   $0x0,-0x4(%rsp)
-   b:	00 
+   b:	00
    c:	85 ff                	test   %edi,%edi
    e:	7e 19                	jle    29 <exampleFunction+0x29>
   10:	31 c0                	xor    %eax,%eax
@@ -30,12 +30,12 @@ Disassembly of section .text:
   45:	53                   	push   %rbx
   46:	48 81 ec a0 00 00 00 	sub    $0xa0,%rsp
   4d:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
-  54:	00 00 
+  54:	00 00
   56:	48 89 84 24 98 00 00 	mov    %rax,0x98(%rsp)
-  5d:	00 
+  5d:	00
   5e:	31 c0                	xor    %eax,%eax
   60:	48 c7 44 24 08 00 00 	movq   $0x0,0x8(%rsp)
-  67:	00 00 
+  67:	00 00
   69:	e8 00 00 00 00       	call   6e <get_cpu_frequency+0x3e>
   6e:	48 85 c0             	test   %rax,%rax
   71:	0f 84 00 00 00 00    	je     77 <get_cpu_frequency+0x47>
@@ -44,7 +44,7 @@ Disassembly of section .text:
   7f:	4c 8d 25 00 00 00 00 	lea    0x0(%rip),%r12        # 86 <get_cpu_frequency+0x56>
   86:	eb 1f                	jmp    a7 <get_cpu_frequency+0x77>
   88:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
-  8f:	00 
+  8f:	00
   90:	31 c0                	xor    %eax,%eax
   92:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx
   97:	4c 89 e6             	mov    %r12,%rsi
@@ -61,12 +61,12 @@ Disassembly of section .text:
   bc:	48 89 ef             	mov    %rbp,%rdi
   bf:	e8 00 00 00 00       	call   c4 <get_cpu_frequency+0x94>
   c4:	f2 0f 10 05 00 00 00 	movsd  0x0(%rip),%xmm0        # cc <get_cpu_frequency+0x9c>
-  cb:	00 
+  cb:	00
   cc:	f2 0f 59 44 24 08    	mulsd  0x8(%rsp),%xmm0
   d2:	48 8b 84 24 98 00 00 	mov    0x98(%rsp),%rax
-  d9:	00 
+  d9:	00
   da:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
-  e1:	00 00 
+  e1:	00 00
   e3:	75 0c                	jne    f1 <get_cpu_frequency+0xc1>
   e5:	48 81 c4 a0 00 00 00 	add    $0xa0,%rsp
   ec:	5b                   	pop    %rbx
@@ -75,7 +75,7 @@ Disassembly of section .text:
   f0:	c3                   	ret
   f1:	e8 00 00 00 00       	call   f6 <get_cpu_frequency+0xc6>
   f6:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
-  fd:	00 00 00 
+  fd:	00 00 00
 
 0000000000000100 <get_cpu_core>:
  100:	f3 0f 1e fa          	endbr64
@@ -95,9 +95,9 @@ Disassembly of section .text:
  12b:	53                   	push   %rbx
  12c:	48 81 ec 18 01 00 00 	sub    $0x118,%rsp
  133:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
- 13a:	00 00 
+ 13a:	00 00
  13c:	48 89 84 24 08 01 00 	mov    %rax,0x108(%rsp)
- 143:	00 
+ 143:	00
  144:	31 c0                	xor    %eax,%eax
  146:	e8 00 00 00 00       	call   14b <print_cpu_info+0x3b>
  14b:	48 85 c0             	test   %rax,%rax
@@ -148,9 +148,9 @@ Disassembly of section .text:
  1f8:	48 89 ef             	mov    %rbp,%rdi
  1fb:	e8 00 00 00 00       	call   200 <print_cpu_info+0xf0>
  200:	48 8b 84 24 08 01 00 	mov    0x108(%rsp),%rax
- 207:	00 
+ 207:	00
  208:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
- 20f:	00 00 
+ 20f:	00 00
  211:	75 12                	jne    225 <print_cpu_info+0x115>
  213:	48 81 c4 18 01 00 00 	add    $0x118,%rsp
  21a:	5b                   	pop    %rbx
@@ -168,14 +168,14 @@ Disassembly of section .text.unlikely:
    0:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 7 <get_cpu_frequency.cold+0x7>
    7:	e8 00 00 00 00       	call   c <get_cpu_frequency.cold+0xc>
    c:	f2 0f 10 05 00 00 00 	movsd  0x0(%rip),%xmm0        # 14 <get_cpu_frequency.cold+0x14>
-  13:	00 
+  13:	00
   14:	e9 00 00 00 00       	jmp    19 <print_cpu_info.cold>
 
 0000000000000019 <print_cpu_info.cold>:
   19:	48 8b 84 24 08 01 00 	mov    0x108(%rsp),%rax
-  20:	00 
+  20:	00
   21:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
-  28:	00 00 
+  28:	00 00
   2a:	75 1d                	jne    49 <print_cpu_info.cold+0x30>
   2c:	48 81 c4 18 01 00 00 	add    $0x118,%rsp
   33:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 3a <print_cpu_info.cold+0x21>
@@ -205,7 +205,7 @@ Disassembly of section .text.startup:
   32:	f2 0f 11 4c 24 08    	movsd  %xmm1,0x8(%rsp)
   38:	66 0f 28 c1          	movapd %xmm1,%xmm0
   3c:	f2 0f 5e 05 00 00 00 	divsd  0x0(%rip),%xmm0        # 44 <main+0x44>
-  43:	00 
+  43:	00
   44:	e8 00 00 00 00       	call   49 <main+0x49>
   49:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 50 <main+0x50>
   50:	e8 00 00 00 00       	call   55 <main+0x55>
@@ -214,7 +214,7 @@ Disassembly of section .text.startup:
   5c:	0f 31                	rdtsc
   5e:	48 c1 e2 20          	shl    $0x20,%rdx
   62:	c7 44 24 1c 00 00 00 	movl   $0x0,0x1c(%rsp)
-  69:	00 
+  69:	00
   6a:	89 c0                	mov    %eax,%eax
   6c:	f2 0f 10 4c 24 08    	movsd  0x8(%rsp),%xmm1
   72:	48 89 d6             	mov    %rdx,%rsi
@@ -247,7 +247,7 @@ Disassembly of section .text.startup:
   dc:	b8 01 00 00 00       	mov    $0x1,%eax
   e1:	e8 00 00 00 00       	call   e6 <main+0xe6>
   e6:	f2 0f 10 05 00 00 00 	movsd  0x0(%rip),%xmm0        # ee <main+0xee>
-  ed:	00 
+  ed:	00
   ee:	f2 0f 5e 44 24 08    	divsd  0x8(%rsp),%xmm0
   f4:	f2 0f 2c d0          	cvttsd2si %xmm0,%edx
   f8:	48 8d 35 00 00 00 00 	lea    0x0(%rip),%rsi        # ff <main+0xff>

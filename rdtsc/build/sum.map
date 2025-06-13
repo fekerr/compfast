@@ -187,19 +187,19 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
                 0x0000000000001180       0x4e build/x86_64/sum_rdtsc.o
  *(.text.exit .text.exit.*)
  *(.text.startup .text.startup.*)
- *fill*         0x00000000000011ce        0x2 
+ *fill*         0x00000000000011ce        0x2
  .text.startup  0x00000000000011d0      0x157 build/x86_64/sum_rdtsc.o
                 0x00000000000011d0                main
  *(.text.hot .text.hot.*)
  *(SORT_BY_NAME(.text.sorted.*))
  *(.text .stub .text.* .gnu.linkonce.t.*)
- *fill*         0x0000000000001327        0x9 
+ *fill*         0x0000000000001327        0x9
  .text          0x0000000000001330       0x26 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o
                 0x0000000000001330                _start
  .text          0x0000000000001356        0x0 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o
- *fill*         0x0000000000001356        0xa 
+ *fill*         0x0000000000001356        0xa
  .text          0x0000000000001360       0xb9 /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o
- *fill*         0x0000000000001419        0x7 
+ *fill*         0x0000000000001419        0x7
  .text          0x0000000000001420      0x22a build/x86_64/sum_rdtsc.o
                 0x0000000000001420                exampleFunction
                 0x0000000000001450                get_cpu_frequency
@@ -229,7 +229,7 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
                                          0xc6 (size before relaxing)
  .rodata.str1.8
                 0x00000000000020c8       0x57 build/x86_64/sum_rdtsc.o
- *fill*         0x000000000000211f        0x1 
+ *fill*         0x000000000000211f        0x1
  .rodata.cst8   0x0000000000002120       0x18 build/x86_64/sum_rdtsc.o
 
 .rodata1
@@ -245,7 +245,7 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
  *(.eh_frame)
  .eh_frame      0x00000000000021a0       0x30 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o
                                          0x2c (size before relaxing)
- *fill*         0x00000000000021d0        0x0 
+ *fill*         0x00000000000021d0        0x0
  .eh_frame      0x00000000000021d0       0x28 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o
                                          0x40 (size before relaxing)
  .eh_frame      0x00000000000021f8       0x18 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o
@@ -361,7 +361,7 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
                 0x0000000000004000                __data_start
  .data          0x0000000000004004        0x0 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o
  .data          0x0000000000004004        0x0 /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o
- *fill*         0x0000000000004004        0x4 
+ *fill*         0x0000000000004004        0x4
  .data.rel.local
                 0x0000000000004008        0x8 /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o
                 0x0000000000004008                __dso_handle
@@ -385,7 +385,7 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
 
 .bss            0x0000000000004020       0x10
  *(.dynbss)
- *fill*         0x0000000000004020        0x0 
+ *fill*         0x0000000000004020        0x0
  .dynbss        0x0000000000004020        0x8 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o
                 0x0000000000004020                stderr@@GLIBC_2.2.5
  *(.bss .bss.* .gnu.linkonce.b.*)
@@ -397,7 +397,7 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
  .bss           0x0000000000004029        0x0 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
  *(COMMON)
                 0x0000000000004030                . = ALIGN ((. != 0x0)?0x8:0x1)
- *fill*         0x0000000000004029        0x7 
+ *fill*         0x0000000000004029        0x7
 
 .lbss
  *(.dynlbss)

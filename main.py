@@ -87,7 +87,7 @@ def main():
                 logger.warning("Workload errors:\n%s", result.stderr)
 
 
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             # print(f"Error: {e}") # Already logged above
             pass # Error already logged by logger.error
         except subprocess.CalledProcessError as e:

@@ -34,7 +34,7 @@ def simple_sieve(limit: int) -> list[int]:
   if limit >= 0:
     if limit >= 0: is_prime[0] = False
     if limit >= 1: is_prime[1] = False
-  
+
   for p in range(2, limit + 1):
     if is_prime[p]:
       primes.append(p)
@@ -70,7 +70,7 @@ def find_primes_in_segment(segment_low: int, segment_high: int, base_primes: lis
     # The first multiple is then segment_low + start_multiple_offset.
     # A simpler way: start = ceil(segment_low / p) * p
     start_multiple = math.ceil(segment_low / p) * p
-    
+
     # If the prime itself is in the current segment and is the start_multiple,
     # ensure it's not marked off if segment_low <= p < start_multiple.
     # However, this sieve method correctly handles it: p is marked if it's a multiple of a *smaller* prime.
@@ -88,14 +88,14 @@ def find_primes_in_segment(segment_low: int, segment_high: int, base_primes: lis
     # Specifically, if segment_low <= p < start_multiple, we might miss p.
     # The start_multiple must be at least p*p OR the first multiple of p in the segment.
     # Let's use max(p*p, first multiple of p >= segment_low)
-    
+
     current_multiple = max(p * p, start_multiple)
 
     # Mark multiples of p in the current segment
     for i in range(current_multiple, segment_high + 1, p):
       if i >= segment_low: # Ensure we are within the current segment
         is_prime_segment[i - segment_low] = False
-  
+
   # Collect primes from the segment
   for i in range(segment_size):
     if is_prime_segment[i]:
@@ -103,7 +103,7 @@ def find_primes_in_segment(segment_low: int, segment_high: int, base_primes: lis
       # Special case: 1 is not prime. Also, segment_low could be 0 or 1.
       if num > 1: # Ensure numbers are greater than 1
           primes_in_segment.append(num)
-          
+
   return primes_in_segment
 
 @time_it
@@ -140,16 +140,16 @@ def segmented_sieve_workload(n_limit: int):
   # So, the first segment should start after sqrt_n.
   # The simple_sieve gives primes <= sqrt_n.
   # The main loop of segmented sieve should cover numbers > sqrt_n.
-  
+
   # Correct starting point for segments
   current_low = sqrt_n + 1
-  
+
   print(f"Using segment size: {segment_size}")
 
   while current_low <= n_limit:
     segment_high = min(current_low + segment_size - 1, n_limit)
     print(f"Processing segment: [{current_low}, {segment_high}]")
-    
+
     # In find_primes_in_segment, numbers are added if is_prime_segment[i - segment_low] is True.
     # This means if segment_low = 0, index is i. if segment_low = 10, index is i-10.
     # segment_low cannot be 0 if it starts from sqrt_n + 1, unless sqrt_n = -1 (not possible).
@@ -157,7 +157,7 @@ def segmented_sieve_workload(n_limit: int):
 
     primes_in_this_segment = find_primes_in_segment(current_low, segment_high, base_primes)
     all_primes.extend(primes_in_this_segment)
-    
+
     current_low += segment_size
 
   print(f"\nTotal number of primes found up to {n_limit}: {len(all_primes)}")

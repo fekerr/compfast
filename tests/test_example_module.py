@@ -1,7 +1,6 @@
 """
 Tests for the example_module.
 """
-import pytest
 import sys
 import os
 

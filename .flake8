@@ -1,4 +1,4 @@
 [flake8]
 max-line-length = 120
-extend-ignore = E203  # Whitespace before ':', often conflicts with Black
-# Add other ignores or settings as needed, for now this is minimal.
+# E203: Whitespace before ':', often conflicts with Black
+extend-ignore = E203

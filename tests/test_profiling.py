@@ -1,7 +1,6 @@
 """
 Tests for the profiling decorator.
 """
-import pytest
 import io
 import sys
 import contextlib
@@ -42,7 +41,7 @@ def test_memory_profile_it_decorator():
   @memory_profile_it
   def sample_function_for_memory_test():
     # Allocate some memory
-    a = list(range(100000))
+    _ = list(range(100000)) # Assign to _ to indicate intentional non-use of var
     return "Memory function executed"
 
   captured_stdout = io.StringIO()

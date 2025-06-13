@@ -64,4 +64,3 @@ disassemble: $(OBJS_x86) $(OBJS_x86_64)
 # Clean up generated files
 clean:
 	rm -rf build
-
