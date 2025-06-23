@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*~
+# Virtual environment
+.venv/
+venv/
+ENV/
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+# Log files (as per user feedback, assuming logs are not committed for now)
+Jules/
+recordings/
+
+# Test coverage reports
+htmlcov/
+.coverage

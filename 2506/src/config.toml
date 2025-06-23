@@ -1,0 +1,33 @@
+[simulation]
+time_step = 0.1 # days per frame
+gravity_constant = 6.67430e-11 # N(m/kg)^2
+
+[display]
+screen_width = 1280
+screen_height = 720
+background_color = "#000020" # Dark blue
+planet_default_color = "#FFFFFF"
+initial_pixels_per_au = 200 # Added line
+
+[ui_layout]
+left_pane_width_ratio = 0.35
+right_pane_width_ratio = 0.35
+bottom_pane_height_ratio = 0.20 # Remaining is for graphics
+
+# Celestial body data can be extensive, consider linking to a separate file
+# or defining key bodies here for initial testing.
+[celestial_bodies.sun]
+mass = 1.989e30 # kg
+radius = 695700 # km (for display, not necessarily physics)
+color = "#FFFF00"
+initial_position = [0.0, 0.0, 0.0] # AU or km - be consistent!
+initial_velocity = [0.0, 0.0, 0.0] # AU/day or km/s
+
+[celestial_bodies.earth]
+mass = 5.972e24 # kg
+radius = 6371 # km
+color = "#0000FF"
+# ... initial position and velocity (will need to be accurate for a given epoch)
+# For now, let's add placeholder values, actual values will be researched in Phase 2
+initial_position = [1.0, 0.0, 0.0] # Placeholder in AU
+initial_velocity = [0.0, 29.78, 0.0] # Placeholder in km/s, needs to be AU/day if position is AU
